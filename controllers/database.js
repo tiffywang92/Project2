@@ -15,9 +15,27 @@ module.exports.storeData = function(request, response) {
         var Orders = db.collection('Orders');
 
         // log output by collection id
-        var c = Orders.find({});
+        var a = Customers.find({});
+        var b = Billing.find({});
+        var c = Shipping.find({});
+        var d = Orders.find({});
 
+        a.forEach(
+            function(myDoc) {
+                console.log( "_id: " + myDoc._id );
+            }
+        );
+        b.forEach(
+            function(myDoc) {
+                console.log( "_id: " + myDoc._id );
+            }
+        );
         c.forEach(
+            function(myDoc) {
+                console.log( "_id: " + myDoc._id );
+            }
+        );
+        d.forEach(
             function(myDoc) {
                 console.log( "_id: " + myDoc._id );
             }
