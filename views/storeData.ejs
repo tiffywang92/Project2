@@ -1,27 +1,130 @@
-<!--getAllOrders.ejs-->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Order Results</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="Proj1Style.css">
 </head>
-<body>
-<div class="container">
-    <h2>Database results getting Orders </h2>
-    <ul>
-        <% results.forEach(function(r) { %>
-        <li><%= r._id %> : <%= r.CUSTOMER_ID %></li>
-        <ul>
-            <li>Bill to:( <%=r.BILLING_ID %> )</li>
-            <li>Ship to: ( <%=r.SHIPPING_ID %> )</li>
-            <li>Total: ( <%=r.ORDER_TOTAL %> )</li>
-        </ul>
-        <br/><br/>
-        <% }); %>
-    </ul>
-    <br/><br/>
-    Thank you for your order!
-</div>
 
+<body style="background-color:darkgray">
+<div align="center">
+    <div style="width:95%;" align="left">
+        <br />
+        <h1>Order Confirmation</h1>
+        <br />
+        <form method="post">
+            <div align="center" style="background-color:lightgray;display:inline-block;border:3px solid darkgreen;width:100%">
+                <br />
+                <div align="center" style="background-color:whitesmoke;">
+                    <div class="row" style="border-bottom:2px solid darkgreen;width:100%">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <% Costumers.forEach(function(c) { %>
+                            <br/>
+                            <p>
+                            <h4 style="color:rebeccapurple;">Customer Info</h4>
+                            </p>
+                            <br />
+                            <strong>Name: </strong><%= c.FIRSTNAME %> <%= c.LASTNAME %>
+                            <br />
+                            <br />
+                            <strong>Address: </strong><%= c.STREET %>
+                            <br />
+                            <br />
+                            <strong>Address line 2: </strong>(Not Applicable)
+                            <br />
+                            <br />
+                            <strong>City, state, & zip code: </strong><%= c.CITY %>, <%= c.STATE %> <%= c.ZIPCODE %>
+                            <br />
+                            <br />
+                            <strong>Telephone number: </strong><%= c.PHONE %>
+                            <br />
+                            <br />
+                            <strong>Email address: </strong><%= c.EMAIL %>
+                            <br />
+                            <br />
+                            <% }); %>
+                        </div>
+                        <br />
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <% Billing.forEach(function(b) { %>
+                            <br/>
+                            <p>
+                            <h4 style="color:rebeccapurple;">Billing Info</h4>
+                            </p>
+                            <br />
+                            <strong>Card type: </strong><%= b.CREDITCARDTYPE %>
+                            <br />
+                            <br />
+                            <strong>Card number: </strong><%= b.CREDITCARDNUM %>
+                            <br />
+                            <br />
+                            <strong>Card expiration date: </strong><%= b.CREDITCARDEXP %>
+                            <br />
+                            <br />
+                            <strong>Card security number: </strong><%= b.CREDITCARDSECURITYNUM %>
+                            <br />
+                            <br />
+                            <% }); %>
+                        </div>
+                        <br />
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <% Shipping.forEach(function(b) { %>
+                            <p>
+                            <h4 style="color:rebeccapurple;">Shipping Info</h4>
+                            <br />
+                            <strong>Address: </strong><%= b.SHIPPING_STREET %>
+                            <br />
+                            <br />
+                            <strong>Address line 2: </strong>(Not Applicable)
+                            <br />
+                            <br />
+                            <strong>City, state, & zipcode: </strong><%= b.SHIPPING_CITY %> <%= b.SHIPPING_STATE %> <%= b.SHIPPING_ZIP %>
+                            <br />
+                            <br />
+                            <strong>Shipping rate: </strong><%= b.SHIPPING_RATE %>
+                            </p>
+                            <br />
+                            <br />
+                            <% }); %>
+                        </div>
+                        <br />
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <% Orders.forEach(function(o) { %>
+                            <br />
+                            <h4 style="color:rebeccapurple;">Order ID Summary: </h4>
+                            <br />
+                            <strong>Customer ID: </strong><%= o.CUSTOMER_ID %>
+                            <br />
+                            <br />
+                            <strong>Billing ID: </strong><%= o.BILLING_ID %>
+                            <br />
+                            <br />
+                            <strong>Shipping ID: </strong><%= o.SHIPPING_ID %>
+                            <br />
+                            <br />
+                            <strong>Date: </strong><%= o.DATE %>
+                            <br />
+                            <br />
+                            <strong>Products: </strong><%= o.PRODUCT_VECTOR %>
+                            <br />
+                            <br />
+                            <strong>Products: </strong><%= o.ORDER_TOTAL %>
+                            <br />
+                            <br />
+                            <% }); %>
+                        </div>
+                    </div>
+                    <br />
+                    End of Order Summary
+                    <br />
+                    <br />
+                </div>
+                <br />
+            </div>
+        </form>
+    </div>
+    <br />
+    <br />
+</div>
 </body>
 </html>

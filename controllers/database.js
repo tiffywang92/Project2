@@ -15,31 +15,29 @@ module.exports.storeData = function(request, response) {
         var Orders = db.collection('Orders');
 
         // log output by collection id
-        var a = Customers.find({});
-        var b = Billing.find({});
-        var c = Shipping.find({});
-        var d = Orders.find({});
+        Customers.find().toArray(function (err, docs) {
+            if(err) throw err;
 
-        a.forEach(
-            function(myDoc) {
-                console.log( "_id: " + myDoc._id );
-            }
-        );
-        b.forEach(
-            function(myDoc) {
-                console.log( "_id: " + myDoc._id );
-            }
-        );
-        c.forEach(
-            function(myDoc) {
-                console.log( "_id: " + myDoc._id );
-            }
-        );
-        d.forEach(
-            function(myDoc) {
-                console.log( "_id: " + myDoc._id );
-            }
-        );
+            response.render('storeData', {results: docs});
+        });
+
+        Billing.find().toArray(function (err, docs) {
+            if(err) throw err;
+
+            response.render('storeData', {results: docs});
+        });
+
+        Shipping.find().toArray(function (err, docs) {
+            if(err) throw err;
+
+            response.render('storeData', {results: docs});
+        });
+
+        Orders.find().toArray(function (err, docs) {
+            if(err) throw err;
+
+            response.render('storeData', {results: docs});
+        });
 
         db.close(function (err) {
             if(err) throw err;
